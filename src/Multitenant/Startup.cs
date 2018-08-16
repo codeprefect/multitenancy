@@ -83,31 +83,7 @@ namespace Multitenant
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
-            {
-                var dbContextFactory = serviceScope.ServiceProvider.GetService<IDbContextFactory>();
-                var allTenants = serviceScope.ServiceProvider.GetService<ITenantProvider>().AllTenants;
-                foreach (var tenant in allTenants)
-                {
-                    var context = dbContextFactory.CreateDbContext(tenant, Configuration);
-                    context.Database.Migrate();
-                }
-            }
-        }
-    }
-
-    public interface IDbContextFactory
-    {
-        ApplicationDbContext CreateDbContext(Tenant tenant, IConfiguration confifuration);
-    }
-
-    public class DbContextFactory : IDbContextFactory
-    {
-        public ApplicationDbContext CreateDbContext(Tenant tenant, IConfiguration configuration)
-        {
-            var options = new DbContextOptions<ApplicationDbContext>();
-            var dbContextOptionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>(options);
-            return new ApplicationDbContext(dbContextOptionsBuilder.Options, configuration, tenant);
+            app.EnsureMigrationsRun(Configuration);
         }
     }
 }

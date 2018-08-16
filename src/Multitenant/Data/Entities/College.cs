@@ -5,7 +5,5 @@ namespace Multitenant.Data.Entities
     public class College : BaseEntity<int>
     {
         public string Name { get; set; }
-        public string Code { get; set; }
-        public string Dean { get; set; }
     }
 }

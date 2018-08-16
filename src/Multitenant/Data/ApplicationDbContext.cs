@@ -15,7 +15,6 @@ namespace Multitenant.Data
         private readonly Tenant _tenant;
         private readonly IConfiguration _configuration;
         public DbSet<College> Colleges { get; set; }
-        public DbSet<Faculty> Faculties { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IConfiguration configuration, Tenant tenant) : base(options)
         {
