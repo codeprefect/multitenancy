@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "options": {
+        "env": {
+            "ASPNETCORE_ENVIRONMENT": "Development"
+        },
+        "cwd": "${workspaceFolder}/src/Multitenant"
+    },
+    "tasks": [{
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}
