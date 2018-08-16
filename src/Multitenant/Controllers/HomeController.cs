@@ -14,15 +14,8 @@ namespace Multitenant.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IRepository<ApplicationDbContext> _repository;
-
-        public HomeController(IRepository<ApplicationDbContext> repository)
+        public IActionResult Index()
         {
-            _repository = repository;
-        }
-        public async Task<IActionResult> Index()
-        {
-            var colleges = await _repository.GetAllAsync<College>();
             return View();
         }
 
