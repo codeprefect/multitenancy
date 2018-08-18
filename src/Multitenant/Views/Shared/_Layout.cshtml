@@ -1,7 +1,7 @@
 ﻿@inject ITenantProvider tenants
 @functions {
-    public Tenant CurrentTenant { get => tenants.GetTenant(); }
-    public string theme { get => CurrentTenant.Theme; }
+    public Tenant tenant { get => tenants.GetTenant(); }
+    public string theme { get => tenant.Theme; }
 }
 
 <!DOCTYPE html>
@@ -24,7 +24,7 @@
         <link rel="stylesheet" href="~/css/themes/@theme/styles.min.css" asp-append-version="true" />
     </environment>
 </head>
-<body class="@theme">
+<body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -34,7 +34,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">@(CurrentTenant?.Name ?? "Default")</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">@(tenant.Name ?? "Default")</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
