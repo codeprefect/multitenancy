@@ -40,7 +40,7 @@ namespace Multitenant
             });
 
             services.AddScoped<ITenantProvider, FileTenantProvider>();
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContextPool<ApplicationDbContext>(options =>
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>()
