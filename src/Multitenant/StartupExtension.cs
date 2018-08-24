@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Multitenant.Providers;
+using MultiTenant.Data.Interfaces;
 
 namespace Multitenant
 {

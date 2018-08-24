@@ -17,6 +17,7 @@ using CP.Repositories.Interfaces;
 using CP.Repositories;
 using Multitenant.Middlewares;
 using Multitenant.Models;
+using MultiTenant.Data.Interfaces;
 
 namespace Multitenant
 {
@@ -40,7 +41,7 @@ namespace Multitenant
             });
 
             services.AddScoped<ITenantProvider, FileTenantProvider>();
-            services.AddDbContextPool<ApplicationDbContext>(options =>
+            services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>()

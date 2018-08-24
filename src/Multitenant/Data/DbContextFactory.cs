@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Multitenant.Models;
+using MultiTenant.Data.Interfaces;
 
 namespace Multitenant.Data
 {
