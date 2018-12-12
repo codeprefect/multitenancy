@@ -316,3 +316,5 @@ OpenCover/
 **/[Pp]roduction
 
 *.db
+*.DS_Store
+**/tenancy.json

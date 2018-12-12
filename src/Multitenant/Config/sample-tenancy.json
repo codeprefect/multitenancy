@@ -1,7 +1,7 @@
 [{
         "Id": 1,
         "Name": "Default",
-        "Host": "default.tenancy.localhost",
+        "Host": "localhost:5001",
         "ConnectionString": "db\\default.db",
         "Theme": "blue"
     },

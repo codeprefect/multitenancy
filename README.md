@@ -22,6 +22,7 @@ cd multitenancy
 
 * ### Default Tenant
 
+Create a `tenancy.json` file in `src/Multitenant` based off `sample-tenancy.json`.
 The default tenant must be provided both in `src/Multitenant/appsettings.json` and `src/Multitenant/Config/tenancy.json`, In the `appsettings.json` case
 
 ```[json]
