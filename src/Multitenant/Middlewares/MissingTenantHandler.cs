@@ -1,6 +1,5 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using Multitenant.Providers;
 
 namespace Multitenant.Middlewares
 {

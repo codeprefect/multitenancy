@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Multitenant.Models;
 using Newtonsoft.Json;
 
-namespace Multitenant.Providers
+namespace Multitenant.Middlewares
 {
     public class FileTenantProvider : ITenantProvider
     {

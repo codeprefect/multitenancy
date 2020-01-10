@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using CP.Entities.Interfaces;
+using MultiTenant.Data.Interfaces;
 
 namespace Multitenant.Data.Entities
 {

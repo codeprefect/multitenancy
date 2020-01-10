@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Multitenant.Models;
 
-namespace Multitenant.Providers
+namespace Multitenant.Middlewares
 {
     public interface ITenantProvider
     {
