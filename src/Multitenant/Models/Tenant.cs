@@ -1,6 +1,14 @@
 namespace Multitenant.Models
 {
-    public class Tenant
+    public interface ITenant {
+        int Id { get; set; }
+        string Name { get; set; }
+        string Host { get; set; }
+        string ConnectionString { get; set; }
+        string Theme { get; set; }
+    }
+
+    public class Tenant : ITenant
     {
         public int Id { get; set; }
         public string Name { get; set; }

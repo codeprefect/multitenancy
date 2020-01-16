@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Http;
 using MultiTenant.Data.Interfaces;
 using Multitenant.Middlewares;
 using MultiTenant.Data.Repositories;
+using Multitenant.Models;
 
 namespace Multitenant
 {
@@ -39,12 +40,20 @@ namespace Multitenant
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IDbContextFactory, DbContextFactory>();
             services.AddScoped<ITenantProvider, FileTenantProvider>();
-            // services.AddScoped<ApplicationDbContext>();
+
+            // not used at runtime, but required to support code-first migrations
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+            // provides an instance of ITenant using dependency injection, a shorthand version of
+            // *ITenantProvider.GetTenant*
+            services.AddScoped(typeof(ITenant), serviceProvider => {
+                var tenantProvider = serviceProvider.GetService<ITenantProvider>();
+                return tenantProvider.GetTenant();
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
