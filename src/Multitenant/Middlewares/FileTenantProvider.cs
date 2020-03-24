@@ -48,13 +48,13 @@ namespace Multitenant.Middlewares
         public IList<Tenant> DeSerializeNonStandardList()
         {
             var fileDir = Path.Combine(Directory.GetCurrentDirectory(), "Config", "tenancy.json");
-            if (File.Exists(fileDir))
+            if (!File.Exists(fileDir))
             {
-                String json = File.ReadAllText(fileDir);
-                var tenants = JsonConvert.DeserializeObject<IEnumerable<Tenant>>(json);
-                return tenants.ToList();
+                throw new Exception(string.Format("Ensure tenancy file ({0}) exists or remove this implementation from DI", fileDir));
             }
-            return null;
+            String json = File.ReadAllText(fileDir);
+            var tenants = JsonConvert.DeserializeObject<IEnumerable<Tenant>>(json);
+            return tenants.ToList();
         }
     }
 }

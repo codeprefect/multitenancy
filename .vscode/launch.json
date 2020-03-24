@@ -9,7 +9,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/src/Multitenant/bin/Debug/netcoreapp2.1/Multitenant.dll",
+            "program": "${workspaceFolder}/src/Multitenant/bin/Debug/netcoreapp3.1/Multitenant.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/Multitenant",
             "stopAtEntry": false,
