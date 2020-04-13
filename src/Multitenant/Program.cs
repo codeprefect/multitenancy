@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Multitenant.Services;
 
 namespace Multitenant
 {
@@ -16,11 +13,19 @@ namespace Multitenant
             CreateHostBuilder(args).Build().Run();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+        public static IWebHostBuilder CreateHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .ConfigureKestrel(kestrelOptions => {
+                    kestrelOptions.ListenAnyIP(5001, listenOptions => {
+                        listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
+                    });
+
+                    kestrelOptions.ConfigureHttpsDefaults(httpsOptions => {
+                        httpsOptions.ServerCertificateSelector = SslCertificateStore.Get;
+                    });
+                })
+                .UseStartup<Startup>();
+
+        private static ICertificateStore SslCertificateStore = new CertificateStore();
     }
 }
