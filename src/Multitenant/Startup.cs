@@ -1,10 +1,8 @@
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.EntityFrameworkCore;
 using Multitenant.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +12,7 @@ using MultiTenant.Data.Interfaces;
 using Multitenant.Middlewares;
 using MultiTenant.Data.Repositories;
 using Multitenant.Models;
+using Multitenant.Extensions;
 
 namespace Multitenant
 {
@@ -29,9 +28,7 @@ namespace Multitenant
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite(
-                    Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDefaultDatabaseContext(Configuration);
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
@@ -42,10 +39,6 @@ namespace Multitenant
             services.AddScoped<ITenantProvider, FileTenantProvider>();
 
             // not used at runtime, but required to support code-first migrations
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite(
-                    Configuration.GetConnectionString("DefaultConnection")));
-
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             // provides an instance of ITenant using dependency injection, a shorthand version of

@@ -1,11 +1,14 @@
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Multitenant.Data;
 using Multitenant.Middlewares;
+using Multitenant.Models;
 using MultiTenant.Data.Interfaces;
 
-namespace Multitenant
+namespace Multitenant.Extensions
 {
     public static class StartupExtension
     {
@@ -21,6 +24,20 @@ namespace Multitenant
                     context.Database.Migrate();
                 }
             }
+        }
+
+        public static void AddDefaultDatabaseContext(this IServiceCollection services, IConfiguration configuration)
+        {
+            var defaultDbConfig = configuration.GetSection("DefaultDatabase");
+            string connectionString = defaultDbConfig["ConnectionString"];
+
+            if (defaultDbConfig["Provider"] == DatabaseProvider.SQLITE.ToString())
+            {
+                connectionString = DbContextExtensions.ReconstructSqliteConnectionString(connectionString);
+            }
+
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlite(connectionString));
         }
     }
 }

@@ -2,35 +2,40 @@
         "Id": 1,
         "Name": "Default",
         "Host": "localhost:5001",
-        "ConnectionString": "db\\default.db",
+        "ConnectionString": "DataSource=db\\default.db",
+        "Provider": "SQLITE",
         "Theme": "blue"
     },
     {
         "Id": 2,
         "Name": "Tenant 1",
         "Host": "one.tenancy.localhost",
-        "ConnectionString": "db\\tenant1.db",
+        "ConnectionString": "DataSource=db\\tenant1.db",
+        "Provider": "SQLITE",
         "Theme": "green"
     },
     {
         "Id": 3,
         "Name": "Tenant 2",
         "Host": "two.tenancy.localhost",
-        "ConnectionString": "db\\tenant2.db",
+        "ConnectionString": "DataSource=db\\tenant2.db",
+        "Provider": "SQLITE",
         "Theme": "red"
     },
     {
         "Id": 4,
         "Name": "Tenant 3",
         "Host": "three.tenancy.localhost",
-        "ConnectionString": "db\\tenant3.db",
+        "ConnectionString": "DataSource=db\\tenant3.db",
+        "Provider": "SQLITE",
         "Theme": "red"
     },
     {
         "Id": 5,
         "Name": "Finest Tenant",
         "Host": "four.tenancy.localhost",
-        "ConnectionString": "db\\tenant4.db",
+        "ConnectionString": "DataSource=db\\tenant4.db",
+        "Provider": "SQLITE",
         "Theme": "blue"
     }
 ]

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Multitenant.Data.Entities;
 using Multitenant.Models;
 using Multitenant.Middlewares;
+using Multitenant.Extensions;
 
 namespace Multitenant.Data
 {
@@ -30,8 +31,7 @@ namespace Multitenant.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionString = _configuration.GetConnectionString("ConnectionStringTemplate").Replace("{tenant}", _tenant.ConnectionString);
-            optionsBuilder.UseSqlite(connectionString);
+            optionsBuilder.SetDatabaseProvider(_tenant);
             base.OnConfiguring(optionsBuilder);
         }
     }
