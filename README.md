@@ -1,4 +1,4 @@
-**ANNOUCEMENT**: This repo has been improved into a stand-alone library at [TinySaas](https://github.com/codeaisy/tinysaas)
+**ANNOUNCEMENT**: This repo has been improved into a stand-alone library at [TinySaas](https://github.com/codeaisy/tinysaas)
 
 # MultiTenant Architecture in .NET Core (*Database per Tenant*)
 
